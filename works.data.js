@@ -6,9 +6,9 @@ window.WORKS = [
     "tags": ["Demo", "Godot", "Lua", "Python"],
   },
   {
-    "title": "Test Project",
+    "title": "Modelling Project",
     "image": "profile_user.png",
     "description": "Example project created to test the website.",
-    "tags": ["Demo", "Godot", "Lua", "Python"],
+    "tags": ["Demo", "Blender", "3D"],
   }
 ];
