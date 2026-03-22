@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Works | Kirby R. Ergo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #e6eef2;
+    --accent-rgb: 230,238,242;
+    --accent2: #FF9E64;
+    --accent2-rgb: 255,158,100;
+    --muted: #9aaabb;
+    --glow-alpha: 0.08;
+    --glass-bg: rgba(var(--accent-rgb),0.04);
+    --glass-border: rgba(var(--accent-rgb),0.12);
+    --glass-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 18px rgba(var(--accent-rgb),0.04);
+  }
+  body {
+    margin: 0;
+    font-family: 'Fira Code', monospace;
+    background-color: #000000;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.12) 40%, rgba(0,0,0,0.28) 100%),
+      radial-gradient(circle at center, rgba(var(--accent-rgb),0.04) 0%, transparent 55%),
+      url('Background.jpg');
+    background-size: cover, cover, cover;
+    background-position: center center, center center, center center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    color: #e0e0e0;
+    scroll-behavior: smooth;
+  }
+
+  [style*="color: #00ffff"] { color: var(--accent) !important; }
+  .back-link { color: var(--accent) !important; border-bottom-color: rgba(var(--accent-rgb),0.18) !important; }
+  .work-card { border: 1px solid rgba(var(--accent-rgb),0.12); box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 12px rgba(var(--accent-rgb),0.06); }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 15, 26, 0.7);
+    backdrop-filter: blur(14px);
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+    z-index: 10;
+    border-bottom: 1px solid rgba(91,175,246,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #a78bfa;
+    font-weight: bold;
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border: 1px solid #a78bfa;
+    border-radius: 6px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  nav a:hover {
+    background: #a78bfa;
+    color: #0f0f1a;
+    transform: translateY(-2px);
+  }
+
+  .works-container {
+    width: 92%;
+    max-width: 1300px;
+    margin: 48px auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .works-header {
+    margin-bottom: 30px;
+  }
+
+  .works-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px rgba(var(--accent-rgb),0.3), 0 0 18px rgba(var(--accent2-rgb),0.06);
+  }
+
+  .works-header p {
+    margin: 8px 0 0;
+    color: #888;
+    font-size: 0.9rem;
+  }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 26px;
+    align-items: start;
+  }
+
+  .work-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: var(--glass-shadow);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .work-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb),0.28), transparent);
+  }
+
+  .work-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(var(--accent-rgb),0.18), 0 0 25px rgba(var(--accent-rgb),0.08), 0 0 28px rgba(var(--accent2-rgb),0.04);
+    border-color: rgba(var(--accent-rgb),0.28);
+  }
+
+  .work-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .work-card p {
+    margin: 8px 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #aaa;
+  }
+
+  .work-card .tags {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .work-thumb-wrap {
+    width: 100%;
+    height: 240px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 14px;
+    background: transparent;
+    display: block;
+  }
+
+  .work-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    image-rendering: auto;
+    transform-origin: center;
+  }
+
+  .work-thumb-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.18) 100%);
+    pointer-events: none;
+  }
+
+  .work-body {
+    background: linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.28));
+    padding: 18px;
+    border-radius: 8px;
+    margin-top: 6px;
+  }
+
+  .works-container .back-link {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    margin-top: 0;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(var(--accent-rgb),0.06);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(var(--accent-rgb),0.06);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(var(--accent-rgb),0.12);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag:hover { background: rgba(var(--accent2-rgb),0.08); color: #0f0f0f; border-color: rgba(var(--accent2-rgb),0.12); }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--accent-rgb),0.18);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+    border-bottom-color: rgba(var(--accent-rgb),0.22);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(var(--accent-rgb),0.22);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+</style>
+</head>
+<body>
+
+  <div class="works-container">
+    <div class="works-header">
+      <h1>My Works</h1>
+      <p>A collection of projects and games I've created</p>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <div class="works-grid" id="works-grid"></div>
+  </div>
+
+  <script src="works.data.js"></script>
+  <script>
+    (function renderWorksFromGlobal(){
+      const grid = document.getElementById('works-grid');
+      function makeCard(item){
+        const card = document.createElement('div');
+        card.className = 'work-card';
+
+        const thumb = document.createElement('img');
+        thumb.className = 'work-thumb';
+        thumb.src = item.image || 'placeholder.jpg';
+        thumb.alt = item.title || '';
+
+        const thumbWrap = document.createElement('div');
+        thumbWrap.className = 'work-thumb-wrap';
+        thumbWrap.appendChild(thumb);
+
+        const body = document.createElement('div');
+        body.className = 'work-body';
+
+        const title = document.createElement('h3');
+        title.textContent = item.title || '';
+        body.appendChild(title);
+
+        const desc = document.createElement('p');
+        desc.textContent = item.description || '';
+        body.appendChild(desc);
+
+        if (item.tags && item.tags.length){
+          const tagsWrap = document.createElement('div');
+          tagsWrap.className = 'tags';
+          item.tags.forEach(t => {
+            const tEl = document.createElement('span');
+            tEl.className = 'tag';
+            tEl.textContent = t;
+            tagsWrap.appendChild(tEl);
+          });
+          body.appendChild(tagsWrap);
+        }
+
+        card.appendChild(thumbWrap);
+        card.appendChild(body);
+        return card;
+      }
+
+      if (window.WORKS && Array.isArray(window.WORKS)){
+        grid.innerHTML = '';
+        window.WORKS.forEach(item => grid.appendChild(makeCard(item)));
+      } else {
+        grid.innerHTML = '<p style="color:#ccc">No works available.</p>';
+      }
+    })();
+  </script>
+
+</body>
+</html>

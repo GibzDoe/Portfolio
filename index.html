@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kirby R. Ergo | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #e6eef2;
+      --accent-rgb: 230, 238, 242;
+      --accent2: #FF9E64;
+      --accent2-rgb: 255, 158, 100;
+      --muted: #9aaabb;
+      --glow-alpha: 0.08;
+      --glass-bg: rgba(var(--accent-rgb), 0.04);
+      --glass-border: rgba(var(--accent-rgb), 0.12);
+      --glass-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 18px rgba(var(--accent-rgb), 0.04);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Fira Code', monospace;
+      background-color: #000000;
+      background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.35) 30%, rgba(0, 0, 0, 0.75) 100%),
+        radial-gradient(circle at center, rgba(var(--accent-rgb), 0.06) 0%, transparent 50%),
+        url('Background.jpg');
+      background-size: cover, cover, cover;
+      background-position: center center, center center, center center;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      color: #e0e0e0;
+      scroll-behavior: smooth;
+    }
+
+    [style*="color: #00ffff"] {
+      color: var(--accent) !important;
+    }
+
+    [style*="border-bottom: 1px solid #00ffff"] {
+      border-bottom-color: var(--accent) !important;
+    }
+
+    .social-btn {
+      border: 1px solid rgba(var(--accent-rgb), 0.22) !important;
+      color: var(--accent) !important;
+    }
+
+    .social-btn:hover {
+      background: linear-gradient(90deg, rgba(var(--accent2-rgb), 0.12), rgba(var(--accent-rgb), 0.12)) !important;
+      color: #000000 !important;
+    }
+
+    .card,
+    .work-card {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(var(--accent-rgb), calc(var(--glow-alpha) * 0.9));
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+    }
+
+    .card:hover,
+    .work-card:hover {
+      box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.12), 0 0 20px rgba(var(--accent-rgb), 0.06);
+      border-color: rgba(var(--accent-rgb), 0.28);
+    }
+
+    .card:hover {
+      box-shadow: 0 14px 36px rgba(var(--accent2-rgb), 0.06), 0 0 28px rgba(var(--accent-rgb), 0.06);
+    }
+
+    .tag {
+      background: rgba(var(--accent-rgb), 0.06);
+      color: var(--accent);
+      border: 1px solid rgba(var(--accent-rgb), 0.12);
+    }
+
+    .tag:hover {
+      background: rgba(var(--accent2-rgb), 0.08);
+      color: #0f0f0f;
+      border-color: rgba(var(--accent2-rgb), 0.14);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 15, 26, 0.7);
+      backdrop-filter: blur(14px);
+      display: flex;
+      justify-content: center;
+      padding: 12px 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #a78bfa;
+      font-weight: bold;
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      border: 1px solid #a78bfa;
+      border-radius: 6px;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      background: #a78bfa;
+      color: #0f0f1a;
+      transform: translateY(-2px);
+    }
+
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 25px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .welcome-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: var(--glass-shadow);
+      border: 1px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.28), transparent);
+    }
+
+    .welcome-content {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .welcome-text {
+      flex: 1;
+    }
+
+    .welcome-text h1 {
+      margin: 0 0 10px 0;
+      font-size: 1.3rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .welcome-text p {
+      margin: 8px 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #aaa;
+    }
+
+    .welcome-3d {
+      flex: 0 0 150px;
+      width: 150px;
+      height: 150px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: none;
+    }
+
+    .retro-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      filter:
+        contrast(1.4) saturate(1.6) brightness(1.2) pixelate(2px) drop-shadow(0 0 10px rgba(var(--accent-rgb), 0.3));
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+      transition: all 0.3s ease;
+    }
+
+    .retro-avatar:hover {
+      filter:
+        contrast(1.6) saturate(2.0) brightness(1.4) pixelate(1px) drop-shadow(0 0 15px rgba(0, 255, 255, 0.5));
+      transform: scale(1.05);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(var(--accent-rgb), 0.22);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1.1rem;
+    }
+
+    .social-btn:hover {
+      background: var(--accent);
+      color: #000000;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--glass-shadow);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.28), transparent);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.12), 0 0 20px rgba(var(--accent-rgb), 0.06);
+      border-color: rgba(var(--accent-rgb), 0.28);
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+      font-size: 1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #aaa;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    #about {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--glass-shadow);
+      border: 1px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.28), transparent);
+    }
+
+    #about h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #about p {
+      margin: 8px 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #aaa;
+    }
+
+    #about ul {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    #about li {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin: 4px 0;
+    }
+
+    #works {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--glass-shadow);
+      border: 1px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #works::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.28), transparent);
+    }
+
+    #works h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #projects-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .work-item {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(var(--accent-rgb), 0.10);
+      transition: all 0.2s;
+    }
+
+    .work-item:hover {
+      border-color: rgba(167, 139, 250, 0.3);
+      background: rgba(50, 40, 80, 0.8);
+    }
+
+    .work-item h4 {
+      margin: 0 0 4px 0;
+      font-size: 0.85rem;
+      color: #a78bfa;
+    }
+
+    .work-item p {
+      margin: 0;
+      font-size: 0.75rem;
+      color: #888;
+    }
+
+    #works a {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--accent) !important;
+      border-color: rgba(var(--accent-rgb), 0.22) !important;
+    }
+
+    #works a:hover {
+      background: var(--accent);
+      color: #000000 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.18);
+    }
+
+    #contact {
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--glass-shadow);
+      border: 1px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.28), transparent);
+    }
+
+    #contact h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #contact>div {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #contact input,
+    #contact textarea {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      background: rgba(20, 15, 40, 0.8);
+      color: #ddd;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+
+    #contact input:focus,
+    #contact textarea:focus {
+      outline: none;
+      border-color: rgba(167, 139, 250, 0.5);
+      box-shadow: 0 0 15px rgba(167, 139, 250, 0.15);
+    }
+
+    #contact button {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #a78bfa;
+      background: transparent;
+      color: #a78bfa;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #contact button:hover {
+      background: #a78bfa;
+      color: #0f0f1a;
+      box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
+    }
+
+    @media (max-width: 1024px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.3);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-content">
+    <div class="left-panel">
+      <div class="welcome-card">
+        <div class="welcome-content">
+          <div class="welcome-text">
+            <h1>Welcome</h1>
+            <p id="intro">Hi, I'm <strong id="profile-name">Kirby R. Ergo</strong>, <span id="profile-bio">a game
+                developer with strong focus on gameplay mechanics, creative design, and immersive experiences.</span>
+            </p>
+            <p id="intro-cta">Feel free to reach out if you have any project in mind, want to collaborate, or just want
+              to say hello.</p>
+
+            <div class="social-links" style="margin-top: 15px;">
+              <button class="social-btn" title="Github">🔗</button>
+              <button class="social-btn" title="LinkedIn">💼</button>
+              <button class="social-btn" title="Discord">💬</button>
+              <button class="social-btn" title="Portfolio">🎮</button>
+            </div>
+          </div>
+          <div class="welcome-3d">
+            <img src="profile_user.png" alt="Profile" class="retro-avatar">
+            <div class="face-mask" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-grid">
+        <div class="card">
+          <h3>Let's Work Together!</h3>
+          <p><strong>Contact</strong></p>
+          <p id="card-contact-email">contact@kirby.dev</p>
+          <p style="margin-top: 10px;"><strong>Location</strong></p>
+          <p id="card-location">Remote</p>
+        </div>
+        <div class="card">
+          <h3>Current Time</h3>
+          <p style="font-size: 1rem; color: var(--accent);"><strong id="your-time">--:--</strong></p>
+          <p style="font-size: 0.75rem;">Your Time</p>
+          <p style="font-size: 1rem; color: var(--accent); margin-top: 10px;"><strong id="my-time">--:--</strong></p>
+          <p style="font-size: 0.75rem;">My Time (GMT+8)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <section id="about">
+        <h2>About me</h2>
+        <p id="about-intro"></p>
+        <ul id="about-skills"></ul>
+        <p id="about-extra"></p>
+      </section>
+
+      <section id="works">
+        <h2>Works</h2>
+        <a href="works.html"
+          style="display: inline-flex; align-items: center; gap: 8px; color: #5baff6; text-decoration: none; padding: 10px 16px; border: 1px solid #5baff6; border-radius: 8px; transition: all 0.2s; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+          My Projects
+          <span style="font-size: 1rem;">↗</span>
+        </a>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="border-bottom: 1px solid rgba(var(--accent-rgb),0.14); padding-bottom: 10px;">
+            <p style="margin: 0; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Email
+            </p>
+            <p style="margin: 5px 0 0; font-size: 0.9rem; color: var(--accent);"><strong
+                id="contact-email">contact@kirby.dev</strong></p>
+          </div>
+          <div style="border-bottom: 1px solid rgba(var(--accent-rgb),0.14); padding-bottom: 10px;">
+            <p style="margin: 0; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">
+              Discord</p>
+            <p style="margin: 5px 0 0; font-size: 0.9rem; color: var(--accent);"><strong
+                id="contact-discord">KirbyErgo#1234</strong></p>
+          </div>
+          <div style="border-bottom: 1px solid rgba(var(--accent-rgb),0.14); padding-bottom: 10px;">
+            <p style="margin: 0; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">
+              Country</p>
+            <p style="margin: 5px 0 0; font-size: 0.9rem; color: var(--accent);"><strong
+                id="contact-country">PH</strong></p>
+          </div>
+          <div>
+            <p style="margin: 0; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">
+              Timezone</p>
+            <p style="margin: 5px 0 0; font-size: 0.9rem; color: var(--accent);"><strong
+                id="contact-timezone">GMT+8</strong></p>
+          </div>
+        </div>
+
+        <script>
+
+          function updateTimes() {
+            const now = new Date();
+
+            const yourTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('your-time').textContent = yourTime;
+
+            const myTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+            const formattedMyTime = myTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('my-time').textContent = formattedMyTime;
+          }
+
+          updateTimes();
+          setInterval(updateTimes, 6000); // update every 6 seconds
+
+          (async function () {
+            try {
+              const resp = await fetch('profile.json', { cache: 'no-store' });
+              if (!resp.ok) throw new Error('Failed to load profile.json');
+              const profile = await resp.json();
+
+              if (profile.name) {
+                const n = document.getElementById('profile-name');
+                if (n) n.textContent = profile.name;
+                document.title = profile.name + ' | Portfolio';
+              }
+
+              if (profile.bio) {
+                const b = document.getElementById('profile-bio');
+                if (b) b.textContent = profile.bio;
+              }
+
+              if (profile.contact_email) {
+                const c = document.getElementById('card-contact-email');
+                const ce = document.getElementById('contact-email');
+                if (c) c.textContent = profile.contact_email;
+                if (ce) ce.textContent = profile.contact_email;
+              }
+
+              if (profile.location) {
+                const l = document.getElementById('card-location');
+                if (l) l.textContent = profile.location;
+              }
+
+              if (profile.discord) {
+                const d = document.getElementById('contact-discord');
+                if (d) d.textContent = profile.discord;
+              }
+
+              if (profile.country) {
+                const co = document.getElementById('contact-country');
+                if (co) co.textContent = profile.country;
+              }
+
+              if (profile.timezone) {
+                const tz = document.getElementById('contact-timezone');
+                if (tz) tz.textContent = profile.timezone;
+              }
+
+              if (profile.about) {
+                if (profile.about.intro) {
+                  const intro = document.getElementById('about-intro');
+                  if (intro) intro.textContent = profile.about.intro;
+                }
+
+                if (profile.about.skills) {
+                  const ul = document.getElementById('about-skills');
+                  if (ul) {
+                    ul.innerHTML = "";
+                    profile.about.skills.forEach(skill => {
+                      const li = document.createElement('li');
+                      li.textContent = skill;
+                      ul.appendChild(li);
+                    });
+                  }
+                }
+
+                if (profile.about.extra) {
+                  const extra = document.getElementById('about-extra');
+                  if (extra) extra.textContent = profile.about.extra;
+                }
+              }
+
+            } catch (err) {
+              console.warn('Could not load profile.json:', err);
+            }
+          })();
+        </script>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>

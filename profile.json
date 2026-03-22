@@ -1,0 +1,20 @@
+{
+  "name": "Kirby R. Ergo",
+  "bio": "a game developer with strong focus on gameplay mechanics, creative design, and immersive experiences.",
+  "about": {
+    "intro": "Hi, I'm a game developer focused on creating engaging gameplay and immersive experiences.",
+    "skills": [
+      "Game Design & Development",
+      "3D Modeling & Animation",
+      "Gameplay Mechanics",
+      "Level Design",
+      "Creative Problem Solving"
+    ],
+    "extra": "Beyond games, I'm passionate about design and interactive experiences."
+  },
+  "location": "Antipolo City, Philippines",
+  "contact_email": "contact@kirby.dev",
+  "discord": "YoKibbyBoi#1234",
+  "country": "PH",
+  "timezone": "GMT+8"
+}
